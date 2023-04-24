@@ -9,43 +9,52 @@ import time
 import mysql.connector
 
 app = Flask(__name__)
+# app.secret_key = b'$3cr3tK3y!'
 
-# MySQL connection details
-mysql_user = 'root'
-mysql_password = 'your_mysql_password'
-mysql_host = 'localhost'
-mysql_database = 'your_database_name'
+mysql = MySQL(autocommit = True, cursorclass = pymysql.cursors.DictCursor)
+mysql.init_app(app)
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
+# configuring MySQL for the web application
+app.config['MYSQL_DATABASE_USER'] = 'root'   
+app.config['MYSQL_DATABASE_PASSWORD'] = 'password' 
+app.config['MYSQL_DATABASE_DB'] = 'Students'  
+app.config['MYSQL_DATABASE_HOST'] = 'localhost' 
+
+
+#initialise mySQL
+#create connection to access data
+conn = mysql.connect()
+cursor = conn.cursor()
+
+@app.route('/')
+@app.route('/login', methods=['GET', 'POST'])
+def login():
     if request.method == 'POST':
         # Get form data
-        name = request.form['name']
-        email = request.form['email']
-        message = request.form['message']
+        enroll = request.form['PatientEnrollment']
+        password = request.form['PatientPassword']
 
-        # Connect to MySQL database
-        conn = mysql.connector.connect(user=mysql_user, password=mysql_password,
-                                       host=mysql_host, database=mysql_database)
-
-        # Create a cursor object
-        cursor = conn.cursor()
 
         # Insert form data into MySQL table
-        query = "INSERT INTO messages (name, email, message) VALUES (%s, %s, %s)"
-        values = (name, email, message)
+        query = "SELECT * FROM Login WHERE enroll=%s AND pass=%s"
+        values = (enroll, password)
         cursor.execute(query, values)
+        result = cursor.fetchone()
 
-        # Commit changes to database
-        conn.commit()
+        # If login credentials are correct, redirect to home page
+        if result:
+            return redirect(url_for('home'))
 
-        # Close database connection
-        cursor.close()
-        conn.close()
+        # If login credentials are incorrect, show error message
+        else:
+            error = 'Invalid email or password. Please try again.'
+            return render_template('LoginPatient.html', error=error)
 
-        return "Data stored successfully in MySQL database!"
+    return render_template('LoginPatient.html')
 
-    return render_template('index.html')
+@app.route('/home')
+def home():
+    return render_template('home.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
