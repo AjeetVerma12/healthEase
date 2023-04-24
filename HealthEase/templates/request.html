@@ -1,0 +1,68 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Raise a request</title>
+  <link rel="stylesheet" type="text/css" href="../static/css/request.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="../static/js/request.js"></script>
+</head>
+<body>
+
+<div class="form-style-10">
+    <h1>Raise a Request<span></span></h1>
+    <form>
+        <div class="section"><span>1</span>First Name & Phone Number</div>
+        <div class="inner-wrap">
+            <label>Your Full Name <input type="text" name="field1" /></label><br>
+            <label>Phone Number <input type="number" name="field2" /></label>
+            
+        </div>
+    
+        <div class="section"><span>2</span>Enrollment Number,Gender & Age</div>
+        <div class="inner-wrap">
+            <label>Enrollment Number <input type="number" name="field3" /></label><br>
+            <label>Gender</label>
+            <div id>
+            <input type="radio" id="Male" name="field4" value="Male"checked>
+            <label for="Male">Male</label>
+            <input type="radio" id="Female" name="field4" value="Female">
+            <label for="Female">Female</label>
+            <input type="radio" id="Other" name="field4" value="Other">
+            <label for="Other">Other</label>
+            </div>
+            <br>
+            <label>Age <input type="number" name="field5" /></label>
+        </div>
+    
+        <div class="section"><span>3</span>Requirement</div>
+            <div class="inner-wrap">
+            <!-- <label>I need <input type="text" name="field6" /></label> -->
+            <label> I need </label>
+            <select>
+            <option value = "Medicine"> Medicine
+            </option>
+            <option value = "LabTest"> Lab Test 
+            </option>
+            </select>
+            <br>
+            <label>Name of the Medicine/Test<input type="text" name="field6" /></label>
+            <button class="add_field_button">Add More Fields</button>
+            <div class="input_fields_wrap">
+            <!-- <div><input type="hidden" name="mytext[]" value="Enter Medicine"></div> -->
+            </div>
+
+            <br>
+            <label>Why is it needed? State the condition/symptoms<textarea name="field8"></textarea></label><br> 
+            <label>Upload Prescripton <br><input type="file" name="field9" /></label><br>
+
+        </div>
+        <div class="button-section">
+         <input type="submit" name="Sign Up" /> 
+         </span>
+        </div>
+    </form>
+    </div>
+
+
+</body>
+</html>
