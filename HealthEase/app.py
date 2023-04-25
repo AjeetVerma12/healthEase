@@ -34,8 +34,6 @@ def login():
         enroll = request.form['PatientEnrollment']
         password = request.form['PatientPassword']
 
-
-        # Insert form data into MySQL table
         query = "SELECT * FROM Login WHERE enroll=%s AND pass=%s"
         values = (enroll, password)
         cursor.execute(query, values)
@@ -55,6 +53,10 @@ def login():
 @app.route('/home')
 def home():
     return render_template('home.html')
+
+@app.route('/DoctorLogin')
+def DoctorLogin():
+    return render_template("DoctorLogin.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
