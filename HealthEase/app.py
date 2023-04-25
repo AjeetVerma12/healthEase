@@ -8,8 +8,10 @@ from datetime import date
 import time
 import mysql.connector
 
+
+
 app = Flask(__name__)
-# app.secret_key = b'$3cr3tK3y!'
+app.secret_key = b'\x0f\xcf\xf0w\xdc\x93f\xd7\xa8\xffs^'
 
 mysql = MySQL(autocommit = True, cursorclass = pymysql.cursors.DictCursor)
 mysql.init_app(app)
@@ -34,7 +36,7 @@ def LoginPatient():
         enroll = request.form['PatientEnrollment']
         password = request.form['PatientPassword']
 
-        query = "SELECT * FROM Login WHERE enroll=%s AND pass=%s"
+        query = "SELECT * FROM LoginPatient WHERE enroll=%s AND pass=%s"
         values = (enroll, password)
         cursor.execute(query, values)
         result = cursor.fetchone()
@@ -54,9 +56,28 @@ def LoginPatient():
 def home():
     return render_template('home.html')
 
-@app.route('/DoctorLogin')
+@app.route('/DoctorLogin' ,methods=['GET', 'POST'])
 def DoctorLogin():
-    return render_template("DoctorLogin.html")
+    if request.method == 'POST':
+        # Get form data
+        DocID = request.form['DocID']
+        password = request.form['DoctorPassword']
+
+        query = "SELECT * FROM LoginDoctor WHERE DocID=%s AND pass=%s"
+        values = (DocID, password)
+        cursor.execute(query, values)
+        result = cursor.fetchone()
+
+        # If login credentials are correct, redirect to home page
+        if result:
+            return redirect(url_for('home'))
+
+        # If login credentials are incorrect, show error message
+        else:
+            error = 'Invalid email or password. Please try again.'
+            return render_template('DoctorLogin.html', error=error)
+
+    return render_template('DoctorLogin.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
