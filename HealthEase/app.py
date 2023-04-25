@@ -27,8 +27,8 @@ conn = mysql.connect()
 cursor = conn.cursor()
 
 @app.route('/')
-@app.route('/login', methods=['GET', 'POST'])
-def login():
+@app.route('/LoginPatient', methods=['GET', 'POST'])
+def LoginPatient():
     if request.method == 'POST':
         # Get form data
         enroll = request.form['PatientEnrollment']
