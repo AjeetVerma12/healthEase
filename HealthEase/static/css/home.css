@@ -432,7 +432,7 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(/static/Images/doctor.jpg);
+    background-image: url(../Images/doctor.jpg);
     background-position: center;
     background-size: cover;
 }
@@ -460,7 +460,7 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(/static/Images/ambulance.jpg);
+    background-image: url(../Images/ambulance.jpg);
     background-position: center;
     background-size: cover;
 }
@@ -490,7 +490,7 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(/static/Images/medicines.jpg);
+    background-image: url(../Images/medicines.jpg);
     background-position: center;
     background-size: cover;
 }
@@ -520,7 +520,7 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(/static/Images/blood\ tests.jpg tests.jpg);
+    background-image: url("../Images/blood\ tests.jpg");
     background-position: center;
     background-size: cover;
 }

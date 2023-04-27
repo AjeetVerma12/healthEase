@@ -79,5 +79,31 @@ def DoctorLogin():
 
     return render_template('DoctorLogin.html')
 
+app.route('/request' , methods=['GET','POST'])
+def request():
+    if request.method == 'POST':
+        #Get Form data
+        name= request.form['name']
+        #session['name']= fetch from mysql
+    # if 'user_id' in session:
+    #     # Connect to the MySQL database
+    #     cnx = mysql.connector.connect(**db_config)
+    #     cursor = cnx.cursor()
+
+    #     # Fetch data from the MySQL table based on the session variable value
+    #     query = "SELECT * FROM your_table_name WHERE user_id = %s"
+    #     cursor.execute(query, (session['user_id'],))
+    #     data = cursor.fetchall()
+
+    #     # Close the MySQL database connection
+    #     cursor.close()
+    #     cnx.close()
+
+    #     # Pass the data to the HTML template for rendering
+    #     return render_template('data.html', data=data)
+    # else:
+    #     # Redirect to the login page if the session variable is not set
+    #     return redirect('/login')
+
 if __name__ == '__main__':
     app.run(debug=True)
