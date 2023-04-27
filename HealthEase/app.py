@@ -79,11 +79,12 @@ def DoctorLogin():
 
     return render_template('DoctorLogin.html')
 
-app.route('/request' , methods=['GET','POST'])
-def request():
-    if request.method == 'POST':
-        #Get Form data
-        name= request.form['name']
+@app.route('/request' , methods=['GET','POST'])
+def requests():
+    return render_template('request.html')
+#     if request.method == 'POST':
+#         #Get Form data
+#         name= request.form['name']
         #session['name']= fetch from mysql
     # if 'user_id' in session:
     #     # Connect to the MySQL database
@@ -106,4 +107,4 @@ def request():
     #     return redirect('/login')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5000, host='0.0.0.0')
