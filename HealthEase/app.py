@@ -28,13 +28,14 @@ app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 conn = mysql.connect()
 cursor = conn.cursor()
 
-@app.route('/')
+
 @app.route('/LoginPatient', methods=['GET', 'POST'])
 def LoginPatient():
     if request.method == 'POST':
         # Get form data
         enroll = request.form['PatientEnrollment']
         password = request.form['PatientPassword']
+        
 
         query = "SELECT * FROM LoginPatient WHERE enroll=%s AND pass=%s"
         values = (enroll, password)
@@ -43,6 +44,7 @@ def LoginPatient():
 
         # If login credentials are correct, redirect to home page
         if result:
+            session["enroll"]=enroll
             return redirect(url_for('home'))
 
         # If login credentials are incorrect, show error message
@@ -52,9 +54,15 @@ def LoginPatient():
 
     return render_template('LoginPatient.html')
 
+@app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html')
+    # check if user is logged in or not
+    if 'enroll' in session or 'DocID' in session:
+        user_is_logged_in = True
+    else:
+        user_is_logged_in = False
+    return render_template('home.html', user_is_logged_in=user_is_logged_in)
 
 @app.route('/DoctorLogin' ,methods=['GET', 'POST'])
 def DoctorLogin():
@@ -70,6 +78,7 @@ def DoctorLogin():
 
         # If login credentials are correct, redirect to home page
         if result:
+            session['DocID']=DocID
             return redirect(url_for('home'))
 
         # If login credentials are incorrect, show error message
@@ -81,6 +90,7 @@ def DoctorLogin():
 
 @app.route('/request' , methods=['GET','POST'])
 def requests():
+    # check if user is logged in or not
     return render_template('request.html')
 #     if request.method == 'POST':
 #         #Get Form data
@@ -105,6 +115,22 @@ def requests():
     # else:
     #     # Redirect to the login page if the session variable is not set
     #     return redirect('/login')
+
+@app.route('/dashboard' , methods=['GET','POST'])
+def dashboard():
+# check if user is logged in or not
+    
+    return render_template('dashboard.html')
+
+
+@app.route('/logout')
+def Logout():
+    #session variable
+    # if 'enroll' in session:
+    session.pop('enroll',None)
+    # elif 'DocID' in session:
+    session.pop("DocID",None)
+    return redirect(url_for('home'))
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='0.0.0.0')
