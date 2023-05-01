@@ -44,7 +44,8 @@ def LoginPatient():
 
         # If login credentials are correct, redirect to home page
         if result:
-            session["enroll"]=enroll
+            session["loggedin"] = True
+            session["enroll"]=result['enroll']
             return redirect(url_for('home'))
 
         # If login credentials are incorrect, show error message
@@ -58,7 +59,7 @@ def LoginPatient():
 @app.route('/home')
 def home():
     # check if user is logged in or not
-    if 'enroll' in session or 'DocID' in session:
+    if 'loggedin' in session:
         user_is_logged_in = True
     else:
         user_is_logged_in = False
@@ -78,7 +79,8 @@ def DoctorLogin():
 
         # If login credentials are correct, redirect to home page
         if result:
-            session['DocID']=DocID
+            session['loggedin'] = True
+            session['DocID']=result['DocID']
             return redirect(url_for('home'))
 
         # If login credentials are incorrect, show error message
@@ -119,8 +121,20 @@ def requests():
 @app.route('/dashboard' , methods=['GET','POST'])
 def dashboard():
 # check if user is logged in or not
-    
-    return render_template('dashboard.html')
+    if 'loggedin' in session:
+        if 'enroll' in session:
+            enrollment=session['enroll']
+            query = "select Pname from Students where enroll=%s"
+            values = (enrollment,)
+            cursor.execute(query,values)
+            result = cursor.fetchone()
+            print(result)
+            return render_template('dashboard.html',result=result)
+        elif 'DocID' in session:
+            return render_template('dashboard1.html')
+    else:
+        return redirect(url_for('LoginPatient'))
+    # return render_template('dashboard.html')
 
 
 @app.route('/logout')
@@ -130,7 +144,25 @@ def Logout():
     session.pop('enroll',None)
     # elif 'DocID' in session:
     session.pop("DocID",None)
+    session.pop('loggedin',None)
     return redirect(url_for('home'))
+
+@app.route('/your-prescriptions')
+def yourprescriptions():
+    # fetch user
+    if 'enroll' in session:
+        #to be added: date and time of prescription record
+        enrollment = session['enroll']
+        query = "select* from prescriptions where enroll=%s"
+        values = (enrollment,)
+        cursor.execute(query,values)
+        result = cursor.fetchall()
+        print(result)
+
+        return render_template('your-prescriptions.html', result=result)
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='0.0.0.0')
