@@ -13,14 +13,14 @@
     <form method="post" action="{{url_for('requests')}}" enctype="multipart/form-data">
         <div class="section"><span>1</span>Full Name & Phone Number</div>
         <div class="inner-wrap">
-            <label>Full name<input type="text" name="Pname" placeholder="Your name"/></label><br>
+            <label>Full name<input type="text" name="Pname" placeholder= "{{name}}" disabled/></label><br>
             <label>Phone Number <input type="number" name="number" required/></label>
             
         </div>
     
         <div class="section"><span>2</span>Enrollment Number,Gender & Age</div>
         <div class="inner-wrap">
-            <label>Enrollment Number<input type="number" name="enroll" required/></label><br>
+            <label>Enrollment Number<input type="number" name="enroll" required disabled placeholder="{{enroll}}"/></label><br>
             <label>Gender</label>
             <div id>
             <input type="radio" id="Male" name="gender" value="Male"checked>

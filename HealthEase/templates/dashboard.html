@@ -518,14 +518,15 @@
                                     <th>Status</th>
                                   </tr>
                                 </thead>
+                                
                                 <tbody class="table-border-bottom-0">
                                   <tr>
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Paracetemol</strong></td>                                    
                                     <td><span class="badge bg-label-primary me-1">Pending</span></td>
-                                    <td>
-                                    </td>
+
                                   </tr>
                                 </tbody>
+
                                 <tbody class="table-border-bottom-0">
                                   <tr>
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Dolo - 650</strong></td>                                    
@@ -534,6 +535,7 @@
                                     </td>
                                   </tr>
                                 </tbody>
+
                                 <tbody class="table-border-bottom-0">
                                   <tr>
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Paracetemol</strong></td>                                    
@@ -542,6 +544,7 @@
                                     </td>
                                   </tr>
                                 </tbody>
+
                               </table>
                             </div>
 
@@ -655,7 +658,7 @@
                     <div class="card-header d-flex align-items-center justify-content-between pb-0">
                       <div class="card-title mb-0">
                         <h5 class="m-0 me-2">Visit Summary</h5>
-                        <small class="text-muted">42 Total Visits</small>
+                        <!-- <small class="text-muted">42 Total Visits</small> -->
                       </div>
                       <div class="dropdown">
                         <button
@@ -682,7 +685,7 @@
                         <div id="orderStatisticsChart"></div>
                       </div>
                       <ul class="p-0 m-0">
-                        
+                        {% for i in data %}
                         <li class="d-flex mb-4 pb-1">
                           <div class="avatar flex-shrink-0 me-3">
                             <img
@@ -699,6 +702,8 @@
                             </div>
                           </div>
                         </li>
+                        {% end for %}
+
                         <!-- <li class="d-flex mb-4 pb-1">
                           <div class="avatar flex-shrink-0 me-3">
                             <span class="avatar-initial rounded bg-label-success">
