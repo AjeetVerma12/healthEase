@@ -111,11 +111,11 @@ def requests():
                 requirement= request.form['requirement']
                 medname= request.form['medname']
                 symptoms=request.form['symptoms']
-                prescription=request.files['prescription']
+                prescription=request.files['prescription']  #prescription or filename
                 date = datetime.datetime.now()
 
-                query= "Insert into requests values(%s,%s,%s,%s,%s,%s,%s,%s)"
-                values=(name,number,enroll,gender,age,requirement,medname,symptoms)
+                query= "Insert into requests values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+                values=(name,number,enroll,gender,age,requirement,medname,symptoms,prescription,date)
                 cursor.execute(query,values)
 
                 return redirect(url_for('home'))
@@ -163,6 +163,19 @@ def dashboard():
     else:
         return redirect(url_for('LoginPatient'))
     # return render_template('dashboard.html')
+
+@app.route('/book' , methods=['GET','POST'])
+def book():
+    if request.method == "POST":
+        name= request.form['name']
+        phone= request.form['phone']
+        email = request.form ['email']
+
+        
+
+        #create a table for appointments
+
+        return redirect(url_for('home'))
 
 
 @app.route('/logout')

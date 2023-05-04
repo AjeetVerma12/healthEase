@@ -11,16 +11,16 @@
 <div class="form-style-10">
     <h1>Raise a Request<span></span></h1>
     <form method="post" action="{{url_for('requests')}}" enctype="multipart/form-data">
-        <div class="section"><span>1</span>First Name & Phone Number</div>
+        <div class="section"><span>1</span>Full Name & Phone Number</div>
         <div class="inner-wrap">
-            <label>Your Full Name <input type="text" name="Pname" /></label><br>
-            <label>Phone Number <input type="number" name="number" /></label>
+            <label>Full name<input type="text" name="Pname" placeholder="Your name"/></label><br>
+            <label>Phone Number <input type="number" name="number" required/></label>
             
         </div>
     
         <div class="section"><span>2</span>Enrollment Number,Gender & Age</div>
         <div class="inner-wrap">
-            <label>Enrollment Number <input type="number" name="enroll" /></label><br>
+            <label>Enrollment Number<input type="number" name="enroll" required/></label><br>
             <label>Gender</label>
             <div id>
             <input type="radio" id="Male" name="gender" value="Male"checked>
@@ -38,14 +38,14 @@
             <div class="inner-wrap">
             <!-- <label>I need <input type="text" name="field6" /></label> -->
             <label> I need </label>
-            <select name="requirement">
+            <select name="requirement" required>
             <option value = "Medicine" name="requirement"> Medicine
             </option>
             <option value = "LabTest" name="requirement"> Lab Test 
             </option>
             </select>
             <br>
-            <label>Name of the Medicine/Test<input type="text" name="medname" /></label>
+            <label>Name of the Medicine/Test<input type="text" name="medname" required/></label>
             <!-- <button class="add_field_button">Add More Fields</button>
             <div class="input_fields_wrap"> -->
             <!-- <div><input type="hidden" name="mytext[]" value="Enter Medicine"></div> -->

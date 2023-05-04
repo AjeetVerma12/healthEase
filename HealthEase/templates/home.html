@@ -194,13 +194,15 @@
                   </div>
                </div>
                <div class="col-md-6">
+                  <form method="post" action="{{url_for('book')}}">
                   <div class="contact_box">
                      <h1 class="book_text">Book Appoinment</h1>
                      <input type="text" class="Email_text" placeholder="Name" name="Name">
-                     <input type="text" class="Email_text" placeholder="Enrollment No." name="Enrollment No.">
-                     <textarea class="massage-bt" placeholder="Reason for consultation" rows="3" id="comment" name="Message" ></textarea>
-                     <div class="send_bt"><a href="#">SEND</a></div>
+                     <input type="int" class="Email_text" placeholder="Phone Number" name="phone">
+                     <input type="email" class="Email_text" placeholder="Email" name="email">
+                     <div class="send_bt">Book</div>
                   </div>
+                  </form>
                </div>
             </div>
          </div>
