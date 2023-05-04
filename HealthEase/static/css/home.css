@@ -861,7 +861,7 @@ button {
     background-image: url(../images/contact-bg.png);
     background-size: 100%;
     background-repeat: no-repeat;
-    padding-bottom: 150px;
+    padding-bottom: 100px;
 }
 
 .contact_taital {
@@ -870,6 +870,7 @@ button {
     font-size: 50px;
     color: #030202;
     font-weight: bold;
+    padding-bottom: 30px;
 }
 
 .icon_main {
@@ -895,6 +896,8 @@ button {
 .contact_box {
     width: 100%;
     float: left;
+    justify-content: center;
+    align-items: center;
     background-color: #f1fafb;
     height: auto;
     padding: 30px;
@@ -918,6 +921,7 @@ button {
     padding: 5px 15px;
     border: 0px;
     margin-top: 30px;
+    /* margin-bottom: 30px; */
 }
 
 .massage-bt {
@@ -933,12 +937,20 @@ button {
 }
 
 .send_bt {
+    margin-left: 170px;
     width: 140px;
-    margin: 0 auto;
+    font-size: 18px;
+    color: #ffffff;
+    background-color: #1becde;
+    padding: 7px 0px;
     text-align: center;
+    margin-top: 50px;
+    text-transform: uppercase;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 
-.send_bt a {
+/* .send_bt a {
     width: 100%;
     float: left;
     font-size: 18px;
@@ -948,9 +960,9 @@ button {
     text-align: center;
     margin-top: 50px;
     text-transform: uppercase;
-}
+} */
 
-.send_bt a:hover {
+.send_bt :hover {
     background-color: #252525;
 }
 
