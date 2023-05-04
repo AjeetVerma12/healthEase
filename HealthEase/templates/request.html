@@ -10,10 +10,10 @@
 
 <div class="form-style-10">
     <h1>Raise a Request<span></span></h1>
-    <form method="post" action="{{url_for('requests')}}">
+    <form method="post" action="{{url_for('requests')}}" enctype="multipart/form-data">
         <div class="section"><span>1</span>First Name & Phone Number</div>
         <div class="inner-wrap">
-            <label>Your Full Name <input type="text" name="name" /></label><br>
+            <label>Your Full Name <input type="text" name="Pname" /></label><br>
             <label>Phone Number <input type="number" name="number" /></label>
             
         </div>
@@ -31,29 +31,29 @@
             <label for="Other">Other</label>
             </div>
             <br>
-            <label>Age <input type="number" name="field5" /></label>
+            <label>Age <input type="number" name="age" /></label>
         </div>
     
         <div class="section"><span>3</span>Requirement</div>
             <div class="inner-wrap">
             <!-- <label>I need <input type="text" name="field6" /></label> -->
             <label> I need </label>
-            <select>
-            <option value = "Medicine"> Medicine
+            <select name="requirement">
+            <option value = "Medicine" name="requirement"> Medicine
             </option>
-            <option value = "LabTest"> Lab Test 
+            <option value = "LabTest" name="requirement"> Lab Test 
             </option>
             </select>
             <br>
-            <label>Name of the Medicine/Test<input type="text" name="field6" /></label>
-            <button class="add_field_button">Add More Fields</button>
-            <div class="input_fields_wrap">
+            <label>Name of the Medicine/Test<input type="text" name="medname" /></label>
+            <!-- <button class="add_field_button">Add More Fields</button>
+            <div class="input_fields_wrap"> -->
             <!-- <div><input type="hidden" name="mytext[]" value="Enter Medicine"></div> -->
-            </div>
+            <!-- </div> -->
 
             <br>
-            <label>Why is it needed? State the condition/symptoms<textarea name="field8"></textarea></label><br> 
-            <label>Upload Prescripton <br><input type="file" name="field9" /></label><br>
+            <label>Why is it needed? State the condition/symptoms<textarea name="symptoms"></textarea></label><br> 
+            <label>Upload Prescripton <br><input type="file" name="prescription" /></label><br>
 
         </div>
         <div class="button-section">

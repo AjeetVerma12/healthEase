@@ -37,15 +37,19 @@ def LoginPatient():
         password = request.form['PatientPassword']
         
 
-        query = "SELECT * FROM LoginPatient WHERE enroll=%s AND pass=%s"
-        values = (enroll, password)
-        cursor.execute(query, values)
-        result = cursor.fetchone()
+        query = "SELECT * FROM LoginPatient WHERE enroll = %s AND pass=%s"
+        # query = "SELECT * FROM LoginPatient where enroll = '" + enroll+ "' and pass = '" + password+ "'"
+
+        values=(enroll,password)
+        cursor.execute(query,values)
+        print(query)
+        result = cursor.fetchall()
+        print(result)
 
         # If login credentials are correct, redirect to home page
         if result:
             session["loggedin"] = True
-            session["enroll"]=result['enroll']
+            session["enroll"]= enroll
             return redirect(url_for('home'))
 
         # If login credentials are incorrect, show error message
@@ -93,13 +97,35 @@ def DoctorLogin():
 @app.route('/request' , methods=['GET','POST'])
 def requests():
     # check if user is logged in or not
+    if 'loggedin' in session:
+        if 'enroll' in session:
+            if request.method == 'POST':
+                # return render_template('request.html')
+            #Get Form data
+                name= request.form['Pname']
+                number=request.form['number']
+                enroll= request.form['enroll']
+                gender= request.form['gender']
+                age= request.form['age']
+                requirement= request.form['requirement']
+                medname= request.form['medname']
+                symptoms=request.form['symptoms']
+                prescription=request.files['prescription']
+
+                query= "Insert into requests values(%s,%s,%s,%s,%s,%s,%s,%s)"
+                values=(name,number,enroll,gender,age,requirement,medname,symptoms)
+                cursor.execute(query,values)
+
+                return redirect(url_for('home'))
+            
+    else:
+        return redirect(url_for('LoginPatient'))
+    
     return render_template('request.html')
-#     if request.method == 'POST':
-#         #Get Form data
-#         name= request.form['name']
+
         #session['name']= fetch from mysql
     # if 'user_id' in session:
-    #     # Connect to the MySQL database
+        # Connect to the MySQL database
     #     cnx = mysql.connector.connect(**db_config)
     #     cursor = cnx.cursor()
 

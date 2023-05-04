@@ -15,11 +15,11 @@
 			<form class="login" method="POST" action="{{ url_for('LoginPatient') }}">
 				<div class="login__field">
 					<i class="login__icon fas fa-user"></i>
-					<input type="text" class="login__input" placeholder="Enrollment Number" required name="PatientEnrollment">
+					<input type="text" class="login__input" placeholder="Enrollment Number" name="PatientEnrollment">
 				</div>
 				<div class="login__field">
 					<i class="login__icon fas fa-lock"></i>
-					<input type="password" class="login__input" placeholder="Password" required name="PatientPassword">
+					<input type="password" class="login__input" placeholder="Password"  name="PatientPassword">
 				</div>
 				<button class="button login__submit">
 					<span class="button__text">Log In Now</span>
