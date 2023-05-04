@@ -171,8 +171,9 @@ def book():
         phone= request.form['phone']
         email = request.form ['email']
 
-        
-
+        query = "Insert into HealthCampBooking values(%s,%s,%s)"
+        values = (name,phone,email)
+        cursor.execute(query,values)
         #create a table for appointments
 
         return redirect(url_for('home'))
