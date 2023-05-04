@@ -112,10 +112,11 @@ def requests():
                 medname= request.form['medname']
                 symptoms=request.form['symptoms']
                 prescription=request.files['prescription']  #prescription or filename
+                status = "Approval Pending" #approval pending, approved, completed
                 date = datetime.datetime.now()
 
-                query= "Insert into requests values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-                values=(name,number,enroll,gender,age,requirement,medname,symptoms,prescription,date)
+                query= "Insert into requests values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+                values=(name,number,enroll,gender,age,requirement,medname,symptoms,prescription,date,status)
                 cursor.execute(query,values)
 
                 return redirect(url_for('home'))
@@ -156,7 +157,7 @@ def dashboard():
             values = (enrollment,)
             cursor.execute(query,values)
             result = cursor.fetchone()
-            print(result)
+
             return render_template('dashboard.html',result=result)
         elif 'DocID' in session:
             return render_template('dashboard1.html')
