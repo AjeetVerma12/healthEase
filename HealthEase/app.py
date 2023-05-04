@@ -7,6 +7,7 @@ import numpy as np
 from datetime import date
 import time
 import mysql.connector
+import datetime
 
 
 
@@ -111,6 +112,7 @@ def requests():
                 medname= request.form['medname']
                 symptoms=request.form['symptoms']
                 prescription=request.files['prescription']
+                date = datetime.datetime.now()
 
                 query= "Insert into requests values(%s,%s,%s,%s,%s,%s,%s,%s)"
                 values=(name,number,enroll,gender,age,requirement,medname,symptoms)
